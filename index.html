@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Feliz Cumpleaños!</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:wght@400;700&display=swap');
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #c6a0e6, #7a4dd8);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+        .container {
+            text-align: center;
+            background-color: #fff;
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            max-width: 90%;
+            position: relative;
+            overflow: hidden;
+            animation: fadeIn 1s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        h1 {
+            font-family: 'Pacifico', cursive;
+            font-size: 2.5em;
+            color: #7a4dd8;
+            margin: 0;
+        }
+        p {
+            font-size: 1.2em;
+            margin: 15px 0;
+            color: #333;
+        }
+        .button {
+            background-color: #7a4dd8;
+            border: none;
+            color: white;
+            padding: 15px 30px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 1.2em;
+            margin: 20px 0;
+            cursor: pointer;
+            border-radius: 30px;
+            transition: background-color 0.3s;
+        }
+        .button:hover {
+            background-color: #5c37a5;
+        }
+        .carousel {
+            display: none;
+            margin-top: 20px;
+        }
+        .carousel-item {
+            display: none;
+            animation: fadeIn 1s ease-in-out;
+        }
+        .carousel-item.active {
+            display: block;
+        }
+        .carousel-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .carousel-button {
+            background-color: transparent;
+            border: none;
+            color: #7a4dd8;
+            font-size: 2em;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        .carousel-button:hover {
+            color: #5c37a5;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="initial-container">
+        <button class="button" onclick="showCarousel()">Feliz cumpleaños mi niña</button>
+    </div>
+    <div class="container carousel" id="carousel">
+        <div class="carousel-item active" id="item-1">
+            <h1>¡Feliz Cumpleaños!</h1>
+            <p>Eres la luz que ilumina nuestras vidas. ¡Feliz cumpleaños!</p>
+        </div>
+        <div class="carousel-item" id="item-2">
+            <h1>¡Feliz Cumpleaños!</h1>
+            <p>Tu sonrisa es el mejor regalo que podemos recibir. ¡Que tengas un día maravilloso!</p>
+        </div>
+        <div class="carousel-item" id="item-3">
+            <h1>¡Feliz Cumpleaños!</h1>
+            <p>Gracias por ser tan especial y llenar de alegría nuestros corazones. ¡Feliz cumpleaños!</p>
+        </div>
+        <div class="carousel-item" id="item-4">
+            <h1>¡Feliz Cumpleaños!</h1>
+            <p>Espero que este día esté lleno de momentos felices y memorables. ¡Te queremos mucho!</p>
+        </div>
+        <div class="carousel-controls">
+            <button class="carousel-button" onclick="prevItem()">&#10094;</button>
+            <button class="carousel-button" onclick="nextItem()">&#10095;</button>
+        </div>
+    </div>
+    <script>
+        let currentItem = 0;
+        const items = document.querySelectorAll('.carousel-item');
+
+        function showCarousel() {
+            document.getElementById('initial-container').style.display = 'none';
+            document.getElementById('carousel').style.display = 'block';
+            showItem(currentItem);
+        }
+
+        function showItem(index) {
+            items.forEach(item => item.classList.remove('active'));
+            items[index].classList.add('active');
+        }
+
+        function nextItem() {
+            currentItem = (currentItem + 1) % items.length;
+            showItem(currentItem);
+        }
+
+        function prevItem() {
+            currentItem = (currentItem - 1 + items.length) % items.length;
+            showItem(currentItem);
+        }
+    </script>
+</body>
+</html>
