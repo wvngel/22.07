@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>¡Feliz Cumpleaños!</title>
+    <title>Un día como hoy</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:wght@400;700&display=swap');
         
@@ -44,6 +44,10 @@
             font-size: 1.2em;
             margin: 15px 0;
             color: #333;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
         .button {
             background-color: #7a4dd8;
@@ -68,10 +72,14 @@
         }
         .carousel-item {
             display: none;
-            animation: fadeIn 1s ease-in-out;
+            opacity: 0;
+            transform: scale(0.95);
+            transition: opacity 1s ease, transform 1s ease;
         }
         .carousel-item.active {
             display: block;
+            opacity: 1;
+            transform: scale(1);
         }
         .carousel-controls {
             display: flex;
@@ -90,58 +98,124 @@
         .carousel-button:hover {
             color: #5c37a5;
         }
+        #love-message {
+            display: none;
+            font-size: 2em;
+            color: #7a4dd8;
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
     <div class="container" id="initial-container">
-        <button class="button" onclick="showCarousel()">Feliz cumpleaños mi niña</button>
+        <button class="button" id="show-carousel-button">Un día como hoy...</button>
     </div>
     <div class="container carousel" id="carousel">
         <div class="carousel-item active" id="item-1">
-            <h1>¡Feliz Cumpleaños!</h1>
-            <p>Eres la luz que ilumina nuestras vidas. ¡Feliz cumpleaños!</p>
+            <h1>Nació el amor de mi vida</h1>
+            <p>La niña que sin querer queriendo, me hace feliz.</p>
         </div>
         <div class="carousel-item" id="item-2">
-            <h1>¡Feliz Cumpleaños!</h1>
-            <p>Tu sonrisa es el mejor regalo que podemos recibir. ¡Que tengas un día maravilloso!</p>
+            <h1>Y hoy, 22 años después...</h1>
+            <p>Puedo decir que esa hermosa niña, es mi novia.</p>
         </div>
         <div class="carousel-item" id="item-3">
-            <h1>¡Feliz Cumpleaños!</h1>
-            <p>Gracias por ser tan especial y llenar de alegría nuestros corazones. ¡Feliz cumpleaños!</p>
+            <h1>Pero...</h1>
+            <p>Además de ser mi novia, es una personita maravillosa.</p>
         </div>
         <div class="carousel-item" id="item-4">
-            <h1>¡Feliz Cumpleaños!</h1>
-            <p>Espero que este día esté lleno de momentos felices y memorables. ¡Te queremos mucho!</p>
+            <h1>Quien es capaz!</h1>
+            <p>De alegrarme la vida con una sonrisa.</p>
+        </div>
+        <div class="carousel-item" id="item-5">
+            <h1>Y además de eso...</h1>
+            <p>Hacerme ver la vida de una manera más bonita.</p>
+        </div>
+        <div class="carousel-item" id="item-6">
+            <h1>Porque el amor que ella da, es genuino</h1>
+            <p>Y aunque no quieras, te hará amarla.</p>
+        </div>
+        <div class="carousel-item" id="item-7">
+            <h1>Ella lo es todo...</h1>
+            <p>Ella es tu abrigo en el invierno, tu sol en los días grises, tu luz en la oscuridad, y tu paz en medio del caos.</p>
+        </div>
+        <div class="carousel-item" id="item-8">
+            <h1>Porque ella es capaz...</h1>
+            <p>De lograr todo en la vida, lo difícil hacerlo ver fácil, y lo imposible convertirlo en realidad.</p>
+        </div>
+        <div class="carousel-item" id="item-9">
+            <h1>Aunque a veces lo olvide...</h1>
+            <p>Porque en su bondad y humildad, no se da cuenta de la grandeza de su espíritu y la fuerza de su corazón.</p>
+        </div>
+        <div class="carousel-item" id="item-10">
+            <h1>Pero siempre se lo recordaré</h1>
+            <p>Porque la amo con todo mi corazón</p>
+        </div>
+        <div class="carousel-item" id="item-11">
+            <h1>Y tengo la suerte...</h1>
+            <p>De ser su novio, y más aún su compañero, en esta maravillosa aventura llamada vida.</p>
         </div>
         <div class="carousel-controls">
-            <button class="carousel-button" onclick="prevItem()">&#10094;</button>
-            <button class="carousel-button" onclick="nextItem()">&#10095;</button>
+            <button class="carousel-button" aria-label="Anterior" id="prev-button">&#10094;</button>
+            <button class="carousel-button" aria-label="Siguiente" id="next-button">&#10095;</button>
         </div>
+    </div>
+    <div id="love-message" class="container">
+        <h1>¡FELIZ CUMPLEAÑOS!</h1>
+        <p>Nunca olvides lo grandiosa que eres, y lo mucho que te amo.</p>
+        <p>Con cariño, <br>-M.</p>
     </div>
     <script>
         let currentItem = 0;
         const items = document.querySelectorAll('.carousel-item');
+        const showCarouselButton = document.getElementById('show-carousel-button');
+        const prevButton = document.getElementById('prev-button');
+        const nextButton = document.getElementById('next-button');
+        const loveMessage = document.getElementById('love-message');
+        const carousel = document.getElementById('carousel');
+
+        showCarouselButton.addEventListener('click', showCarousel);
+        prevButton.addEventListener('click', prevItem);
+        nextButton.addEventListener('click', nextItem);
 
         function showCarousel() {
             document.getElementById('initial-container').style.display = 'none';
-            document.getElementById('carousel').style.display = 'block';
+            carousel.style.display = 'block';
             showItem(currentItem);
         }
 
         function showItem(index) {
-            items.forEach(item => item.classList.remove('active'));
-            items[index].classList.add('active');
+            items.forEach(item => {
+                item.classList.remove('active');
+                item.style.display = 'none';
+            });
+            if (index < items.length) {
+                items[index].classList.add('active');
+                items[index].style.display = 'block';
+                loveMessage.style.display = 'none';
+                carousel.style.display = 'block';
+            } else {
+                carousel.style.display = 'none';
+                loveMessage.style.display = 'block';
+            }
         }
 
         function nextItem() {
-            currentItem = (currentItem + 1) % items.length;
+            currentItem++;
+            if (currentItem >= items.length) {
+                currentItem = items.length;
+            }
             showItem(currentItem);
         }
 
         function prevItem() {
-            currentItem = (currentItem - 1 + items.length) % items.length;
+            currentItem--;
+            if (currentItem < 0) {
+                currentItem = 0;
+            }
             showItem(currentItem);
         }
     </script>
 </body>
 </html>
+
