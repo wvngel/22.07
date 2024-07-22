@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -36,12 +37,12 @@
         }
         h1 {
             font-family: 'Pacifico', cursive;
-            font-size: 2.5em;
+            font-size: 2em;
             color: #7a4dd8;
             margin: 0;
         }
         p {
-            font-size: 1.2em;
+            font-size: 1em;
             margin: 15px 0;
             color: #333;
             background: rgba(255, 255, 255, 0.8);
@@ -57,7 +58,7 @@
             text-align: center;
             text-decoration: none;
             display: inline-block;
-            font-size: 1.2em;
+            font-size: 1em;
             margin: 20px 0;
             cursor: pointer;
             border-radius: 30px;
@@ -103,6 +104,22 @@
             font-size: 2em;
             color: #7a4dd8;
             margin-top: 20px;
+        }
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.5em;
+            }
+            p {
+                font-size: 0.9em;
+                padding: 10px;
+            }
+            .button {
+                padding: 10px 20px;
+                font-size: 0.9em;
+            }
+            .carousel-button {
+                font-size: 1.5em;
+            }
         }
     </style>
 </head>
@@ -218,4 +235,3 @@
     </script>
 </body>
 </html>
-
